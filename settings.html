@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1024">
+  <title>Настройки — Shulker Slot</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-b"></div><div class="ambient ambient-a"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Shulker Slot — главная">
+      <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="8" rx="2" fill="#a88aff" stroke="#d0baff" stroke-width="1.5"/><rect x="5" y="11" width="14" height="4" rx="1" fill="#4d3b82"/><rect x="3" y="14" width="18" height="7" rx="2" fill="#8b5cf6" stroke="#a88aff" stroke-width="1.5"/><circle cx="12" cy="13" r="1.5" fill="#55e6db"/></svg></span>
+      <span>SHULKER SLOT<small>THE LANDS BEYOND</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Главная навигация">
+      <a href="index.html">Главная</a>
+      <a href="rules.html">Правила</a>
+      <a href="wiki.html">Вики</a>
+      <a href="shop.html">Магазин</a>
+      <a href="https://discord.gg/kcyupGUV4" target="_blank" rel="noopener noreferrer">Заявка в Discord</a>
+      <a class="nav-donate" href="donate.html">Поддержать</a>
+      <div class="nav-user-slot" id="nav-user-slot"></div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="page-hero">
+      <div class="eyebrow">CONTROL MATRIX / 07</div>
+      <h1>НАСТРОЙКИ <span style="color:var(--teal)">ПОРТАЛА.</span></h1>
+      <p>Персонализируй профиль своего игрока, управляй визуальными эффектами сайта и контролируй безопасность аккаунта.</p>
+    </section>
+
+    <!-- БЛОК ДЛЯ НЕАВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ -->
+    <div id="settings-guest" style="display:none;margin-bottom:80px">
+      <section class="content-panel" style="text-align:center;padding:45px 25px">
+        <h2>Войди в аккаунт для настроек профиля</h2>
+        <p>Настройки визуальных эффектов доступны всем, а настройки персонажа сохраняются в твоём профиле.</p>
+        <div style="margin-top:20px">
+          <a class="button button-primary" href="auth.html">Войти или создать аккаунт</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="settings-grid">
+      <!-- РАЗДЕЛ 1: ВИЗУАЛЬНЫЕ ЭФФЕКТЫ САЙТА -->
+      <section class="form-card settings-card">
+        <div class="eyebrow" style="margin-bottom:8px">ИНТЕРФЕЙС И ЭФФЕКТЫ</div>
+        <h2>Визуальные улучшения</h2>
+        <p>Настрой атмосферу сайта так, как тебе комфортно.</p>
+
+        <div class="setting-toggle-row">
+          <div>
+            <strong>Падающие осенние листья</strong>
+            <small>Плавный фоновый листопад на всех страницах сайта</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="setting-leaves-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-toggle-row">
+          <div>
+            <strong>Фиолетово-синий след за курсором</strong>
+            <small>Световой шлейф портала, не перекрывающий кнопки и меню</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="setting-cursor-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="field" style="margin-top:15px">
+          <label for="setting-cursor-theme">Цветовая палитра следа курсора</label>
+          <select id="setting-cursor-theme">
+            <option value="portal">Портал Shulker (фиолетовый, синий, индиго)</option>
+            <option value="emerald">Изумрудные земли (зелёный, бирюзовый, мятный)</option>
+            <option value="gold">Золотое сияние (янтарный, золотой, тёплый огонь)</option>
+          </select>
+        </div>
+
+        <div class="auth-alert" id="visual-settings-alert" style="display:none;margin-top:12px"></div>
+        <button class="button button-ghost" id="save-visual-btn" type="button" style="margin-top:15px">Применить визуальные эффекты</button>
+      </section>
+
+      <!-- РАЗДЕЛ 2: ДАННЫЕ ПРОФИЛЯ -->
+      <section class="form-card settings-card" id="profile-edit-section">
+        <div class="eyebrow" style="margin-bottom:8px">ПЕРСОНАЖ</div>
+        <h2>Данные профиля</h2>
+        <p>Информация, отображаемая в твоём личном кабинете.</p>
+
+        <div class="field">
+          <label for="edit-bio">Статус / Описание персонажа</label>
+          <textarea id="edit-bio" rows="3" placeholder="Расскажи, чем ты занимаешься в мире (например, строю базу в тайге)" maxlength="300"></textarea>
+          <small>До 300 символов.</small>
+        </div>
+
+        <div class="field">
+          <label for="edit-guild">Роль / Призвание</label>
+          <select id="edit-guild">
+            <option value="Исследователь">Странник-исследователь</option>
+            <option value="Строитель">Зодчий и архитектор</option>
+            <option value="Инженер">Редстоун-инженер</option>
+            <option value="Алхимик">Травник и алхимик</option>
+            <option value="Хранитель портала">Хранитель портала</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Аватар персонажа</label>
+          <div class="avatar-select-grid" id="settings-avatar-grid">
+            <label class="avatar-option">
+              <input type="radio" name="settingsAvatar" value="portal_keeper">
+              <div class="avatar-preview preview-purple">✦</div>
+              <span>Портал</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="settingsAvatar" value="explorer">
+              <div class="avatar-preview preview-teal">✧</div>
+              <span>Странник</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="settingsAvatar" value="builder">
+              <div class="avatar-preview preview-green">▦</div>
+              <span>Зодчий</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="settingsAvatar" value="redstone">
+              <div class="avatar-preview preview-blue">◈</div>
+              <span>Инженер</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="settingsAvatar" value="alchemist">
+              <div class="avatar-preview preview-lilac">♧</div>
+              <span>Алхимик</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="auth-alert" id="profile-save-alert" style="display:none;margin-top:12px"></div>
+        <button class="button button-primary" id="save-profile-btn" type="button" style="margin-top:15px">Сохранить изменения профиля</button>
+      </section>
+
+      <!-- РАЗДЕЛ 3: БЕЗОПАСНОСТЬ -->
+      <section class="form-card settings-card" id="security-section">
+        <div class="eyebrow" style="margin-bottom:8px">БЕЗОПАСНОСТЬ</div>
+        <h2>Смена пароля</h2>
+        <p>Используй надёжный пароль для защиты своего аккаунта.</p>
+
+        <form id="change-password-form">
+          <div class="auth-alert" id="pwd-alert" style="display:none"></div>
+
+          <div class="field">
+            <label for="current-pwd">Текущий пароль *</label>
+            <input id="current-pwd" type="password" placeholder="Введи текущий пароль" required autocomplete="current-password">
+          </div>
+
+          <div class="field">
+            <label for="new-pwd">Новый пароль *</label>
+            <input id="new-pwd" type="password" placeholder="Минимум 6 символов" minlength="6" required autocomplete="new-password">
+          </div>
+
+          <button class="button button-ghost" type="submit" style="margin-top:10px">Обновить пароль</button>
+        </form>
+
+        <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px">
+          <div>
+            <strong style="display:block;font-size:13px">Выход из системы</strong>
+            <small style="color:var(--muted);font-size:11px">Завершить текущую сессию на этом устройстве</small>
+          </div>
+          <button class="button button-ghost" id="settings-logout-btn" type="button" style="color:#ff9e9e;border-color:rgba(255,100,100,.3)">Выйти из аккаунта</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="8" rx="2" fill="#a88aff" stroke="#d0baff" stroke-width="1.5"/><rect x="5" y="11" width="14" height="4" rx="1" fill="#4d3b82"/><rect x="3" y="14" width="18" height="7" rx="2" fill="#8b5cf6" stroke="#a88aff" stroke-width="1.5"/><circle cx="12" cy="13" r="1.5" fill="#55e6db"/></svg></span>
+      <span>SHULKER SLOT<small>THE LANDS BEYOND</small></span>
+    </a>
+    <p>Неофициальный сайт Minecraft-сервера Shulker Slot.</p>
+    <div class="footer-links">
+      <a href="rules.html">Правила</a>
+      <a href="wiki.html">Вики</a>
+      <a href="https://discord.gg/kcyupGUV4" target="_blank" rel="noopener noreferrer">Заявка в Discord</a>
+      <a href="Shulker-Slot-updated.zip" download="Shulker-Slot-updated.zip" style="color:var(--lilac);font-weight:600">Скачать сайт (.ZIP)</a>
+    </div>
+    <span class="copyright">© 2026 SHULKER SLOT</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

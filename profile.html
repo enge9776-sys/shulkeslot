@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1024">
+  <title>Профиль игрока — Shulker Slot</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Shulker Slot — главная">
+      <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="8" rx="2" fill="#a88aff" stroke="#d0baff" stroke-width="1.5"/><rect x="5" y="11" width="14" height="4" rx="1" fill="#4d3b82"/><rect x="3" y="14" width="18" height="7" rx="2" fill="#8b5cf6" stroke="#a88aff" stroke-width="1.5"/><circle cx="12" cy="13" r="1.5" fill="#55e6db"/></svg></span>
+      <span>SHULKER SLOT<small>THE LANDS BEYOND</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Главная навигация">
+      <a href="index.html">Главная</a>
+      <a href="rules.html">Правила</a>
+      <a href="wiki.html">Вики</a>
+      <a href="shop.html">Магазин</a>
+      <a href="https://discord.gg/kcyupGUV4" target="_blank" rel="noopener noreferrer">Заявка в Discord</a>
+      <a class="nav-donate" href="donate.html">Поддержать</a>
+      <div class="nav-user-slot" id="nav-user-slot"></div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- БЛОК ДЛЯ НЕАВТОРИЗОВАННОГО ГОСТЯ -->
+    <div id="profile-guest" style="display:none;padding:80px 0">
+      <section class="success-card" style="margin:0 auto">
+        <div class="success-icon" style="color:var(--lilac);border-color:rgba(168,138,255,.4);background:rgba(168,138,255,.1)">✦</div>
+        <div class="eyebrow" style="justify-content:center">ACCESS RESTRICTED</div>
+        <h1>ТРЕБУЕТСЯ <span style="color:var(--lilac)">ВХОД В АККАУНТ.</span></h1>
+        <p>Чтобы открыть личный кабинет игрока, войди в существующий профиль или пройди быструю регистрацию.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a class="button button-primary" href="auth.html">Войти в аккаунт</a>
+          <a class="button button-ghost" href="index.html">На главную</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- БЛОК АВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ -->
+    <div id="profile-authorized" style="display:none">
+      <section class="page-hero" style="padding-bottom:30px">
+        <div class="eyebrow">PLAYER SANCTUARY / 06</div>
+        <h1>ЛИЧНЫЙ КАБИНЕТ <span style="color:var(--green)">ИГРОКА.</span></h1>
+        <p>Управляй своим персонажем, следи за подключением к серверу и настраивай визуальные параметры портала.</p>
+      </section>
+
+      <!-- КАРТОЧКА ШАПКИ ПРОФИЛЯ (БЕЗ ПОЧТЫ И БЕЗ СМАЙЛИКОВ) -->
+      <section class="profile-hero-card">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar-large" id="profile-avatar-display">✦</div>
+          <span class="profile-online-badge">В сети</span>
+        </div>
+        <div class="profile-info-main">
+          <div class="profile-title-row">
+            <h2 id="profile-nick">Игрок</h2>
+            <span class="tag" id="profile-guild-badge">Исследователь</span>
+          </div>
+          <p class="profile-bio" id="profile-bio">Странник неизведанных земель Shulker Slot.</p>
+          <div class="profile-meta-list">
+            <span>Регистрация: <b id="profile-reg-date">Недавно</b></span>
+            <span>Сервер: <b>Java 26.3</b></span>
+            <span>Статус: <b style="color:var(--teal)">Активен</b></span>
+          </div>
+        </div>
+        <div class="profile-actions-bar">
+          <a class="button button-ghost" href="settings.html" style="font-size:11px;min-height:40px">Настройки</a>
+          <button class="button button-ghost copy-ip" type="button" data-copy-ip style="font-size:11px;min-height:40px">Скопировать IP</button>
+          <button class="button button-ghost" id="profile-logout-btn" type="button" style="font-size:11px;min-height:40px;color:#ff9e9e">Выйти</button>
+        </div>
+      </section>
+
+      <!-- СЕТКА СТАТИСТИКИ И СТАТУСА -->
+      <div class="content-grid" style="margin-top:20px">
+        <article class="content-panel">
+          <span class="tag">СЕРВЕРНЫЙ СТАТУС</span>
+          <h2>Подключение к миру</h2>
+          <p>Адрес для подключения: <b style="color:var(--lilac)">malls-contrary.tun.ply.gg</b></p>
+          <p>Сервер работает на версии Java 26.3. Сохрани адрес в клиенте игры.</p>
+          <div style="margin-top:15px">
+            <button class="button button-primary copy-ip" type="button" data-copy-ip style="min-height:38px;padding:0 15px;font-size:11px">Скопировать IP сервера</button>
+          </div>
+        </article>
+
+        <article class="content-panel" id="profile-app-status-panel">
+          <span class="tag" id="app-status-tag">ДОСТУП В DISCORD</span>
+          <h2>Заявка в Discord</h2>
+          <p id="app-status-desc">Все заявки на вход на сервер принимаются через официальный Discord-канал.</p>
+          <div style="margin-top:15px" id="app-status-action">
+            <a class="button button-primary button-discord" href="https://discord.gg/kcyupGUV4" target="_blank" rel="noopener noreferrer" style="min-height:38px;padding:0 18px;font-size:11px">Подать заявку в Discord</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- ЗНАКИ ОТЛИЧИЯ ПЕРСОНАЖА -->
+      <section class="content-panel" style="margin-top:15px;margin-bottom:80px">
+        <div class="eyebrow" style="margin-bottom:10px">GUILD BADGES</div>
+        <h2>Знаки отличия персонажа</h2>
+        <p>Знаки и награды, открывающиеся по мере твоих приключений на сервере Shulker Slot.</p>
+        <div class="badges-grid">
+          <div class="badge-item earned">
+            <div class="badge-icon">ᛟ</div>
+            <strong>Врата открыты</strong>
+            <small>Успешная регистрация личного профиля</small>
+          </div>
+          <div class="badge-item earned">
+            <div class="badge-icon">♧</div>
+            <strong>Кодекс чести</strong>
+            <small>Принятие правил и устоев сообщества</small>
+          </div>
+          <div class="badge-item" id="badge-builder">
+            <div class="badge-icon">▦</div>
+            <strong>Архитектор</strong>
+            <small>Постройка первой базы или фермы</small>
+          </div>
+          <div class="badge-item" id="badge-portal">
+            <div class="badge-icon">✦</div>
+            <strong>Эхо портала</strong>
+            <small>Путешествие за пределы обычного мира</small>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="8" rx="2" fill="#a88aff" stroke="#d0baff" stroke-width="1.5"/><rect x="5" y="11" width="14" height="4" rx="1" fill="#4d3b82"/><rect x="3" y="14" width="18" height="7" rx="2" fill="#8b5cf6" stroke="#a88aff" stroke-width="1.5"/><circle cx="12" cy="13" r="1.5" fill="#55e6db"/></svg></span>
+      <span>SHULKER SLOT<small>THE LANDS BEYOND</small></span>
+    </a>
+    <p>Неофициальный сайт Minecraft-сервера Shulker Slot.</p>
+    <div class="footer-links">
+      <a href="rules.html">Правила</a>
+      <a href="wiki.html">Вики</a>
+      <a href="https://discord.gg/kcyupGUV4" target="_blank" rel="noopener noreferrer">Заявка в Discord</a>
+      <a href="Shulker-Slot-updated.zip" download="Shulker-Slot-updated.zip" style="color:var(--lilac);font-weight:600">Скачать сайт (.ZIP)</a>
+    </div>
+    <span class="copyright">© 2026 SHULKER SLOT</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

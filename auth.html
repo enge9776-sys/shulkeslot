@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1024">
+  <title>Вход и регистрация — Shulker Slot</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Shulker Slot — главная">
+      <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="8" rx="2" fill="#a88aff" stroke="#d0baff" stroke-width="1.5"/><rect x="5" y="11" width="14" height="4" rx="1" fill="#4d3b82"/><rect x="3" y="14" width="18" height="7" rx="2" fill="#8b5cf6" stroke="#a88aff" stroke-width="1.5"/><circle cx="12" cy="13" r="1.5" fill="#55e6db"/></svg></span>
+      <span>SHULKER SLOT<small>THE LANDS BEYOND</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Главная навигация">
+      <a href="index.html">Главная</a>
+      <a href="rules.html">Правила</a>
+      <a href="wiki.html">Вики</a>
+      <a href="shop.html">Магазин</a>
+      <a href="https://discord.gg/kcyupGUV4" target="_blank" rel="noopener noreferrer">Заявка в Discord</a>
+      <a class="nav-donate" href="donate.html">Поддержать</a>
+      <div class="nav-user-slot" id="nav-user-slot"></div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="page-hero">
+      <div class="eyebrow">PORTAL ACCESS / 05</div>
+      <h1>АККАУНТ <span style="color:var(--lilac)">SHULKER SLOT.</span></h1>
+      <p>Войди в существующий профиль игрока или создай новый аккаунт, чтобы управлять персонажем, отслеживать статус доступа и настраивать визуальные эффекты портала.</p>
+    </section>
+
+    <div class="auth-wrapper">
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tab-btn-login" type="button">Вход в аккаунт</button>
+        <button class="auth-tab-btn" id="tab-btn-register" type="button">Создать аккаунт</button>
+      </div>
+
+      <!-- ФОРМА ВХОДА -->
+      <form class="form-card auth-card" id="login-form">
+        <h2>Вход для игроков</h2>
+        <p>Используй свой игровой никнейм Minecraft и пароль.</p>
+
+        <div class="auth-alert" id="login-alert" style="display:none"></div>
+
+        <div class="field">
+          <label for="login-identifier">Никнейм в Minecraft *</label>
+          <input id="login-identifier" name="identifier" placeholder="Например, Alex_Traveler" required autocomplete="username">
+        </div>
+
+        <div class="field">
+          <label for="login-password">Пароль *</label>
+          <input id="login-password" name="password" type="password" placeholder="Введи пароль" required autocomplete="current-password">
+        </div>
+
+        <div class="auth-extras">
+          <label class="check-row" style="margin:0">
+            <input type="checkbox" id="remember-me" checked>
+            <span>Запомнить меня на этом устройстве</span>
+          </label>
+        </div>
+
+        <button class="button button-primary form-submit" type="submit" style="margin-top:20px">Войти в профиль</button>
+
+        <div class="demo-auth-box">
+          <span>Быстрый тест без создания?</span>
+          <button class="button button-ghost" id="quick-demo-btn" type="button" style="min-height:36px;font-size:11px;padding:0 14px">Быстрый вход (Alex_Traveler)</button>
+        </div>
+      </form>
+
+      <!-- ФОРМА РЕГИСТРАЦИИ (БЕЗ ПОЧТЫ) -->
+      <form class="form-card auth-card" id="register-form" style="display:none">
+        <h2>Новый житель Shulker Slot</h2>
+        <p>Создай учётную запись и начни свой путь в мире выживания.</p>
+
+        <div class="auth-alert" id="register-alert" style="display:none"></div>
+
+        <div class="field">
+          <label for="reg-nickname">Никнейм в Minecraft *</label>
+          <input id="reg-nickname" name="nickname" placeholder="Например, Steve_Master" minlength="3" maxlength="16" pattern="[A-Za-z0-9_]+" required autocomplete="username">
+          <small>От 3 до 16 символов: только латиница, цифры и знак _.</small>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="reg-password">Пароль *</label>
+            <input id="reg-password" name="password" type="password" placeholder="Минимум 6 символов" minlength="6" required autocomplete="new-password">
+          </div>
+          <div class="field">
+            <label for="reg-password-confirm">Повтори пароль *</label>
+            <input id="reg-password-confirm" name="passwordConfirm" type="password" placeholder="Повтори пароль" minlength="6" required autocomplete="new-password">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="reg-guild">Роль / Призвание персонажа *</label>
+          <select id="reg-guild" name="guild" required>
+            <option value="Хранитель портала">Хранитель портала</option>
+            <option value="Исследователь" selected>Странник-исследователь</option>
+            <option value="Зодчий">Зодчий и архитектор</option>
+            <option value="Инженер">Редстоун-инженер</option>
+            <option value="Алхимик">Травник и алхимик</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Выбери знак аватара персонажа</label>
+          <div class="avatar-select-grid" id="avatar-grid">
+            <label class="avatar-option selected">
+              <input type="radio" name="avatar" value="portal_keeper" checked>
+              <div class="avatar-preview preview-purple">✦</div>
+              <span>Портал</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="avatar" value="explorer">
+              <div class="avatar-preview preview-teal">✧</div>
+              <span>Странник</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="avatar" value="builder">
+              <div class="avatar-preview preview-green">▦</div>
+              <span>Зодчий</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="avatar" value="redstone">
+              <div class="avatar-preview preview-blue">◈</div>
+              <span>Инженер</span>
+            </label>
+            <label class="avatar-option">
+              <input type="radio" name="avatar" value="alchemist">
+              <div class="avatar-preview preview-lilac">♧</div>
+              <span>Алхимик</span>
+            </label>
+          </div>
+        </div>
+
+        <button class="button button-primary form-submit" type="submit" style="margin-top:20px">Зарегистрировать аккаунт</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="8" rx="2" fill="#a88aff" stroke="#d0baff" stroke-width="1.5"/><rect x="5" y="11" width="14" height="4" rx="1" fill="#4d3b82"/><rect x="3" y="14" width="18" height="7" rx="2" fill="#8b5cf6" stroke="#a88aff" stroke-width="1.5"/><circle cx="12" cy="13" r="1.5" fill="#55e6db"/></svg></span>
+      <span>SHULKER SLOT<small>THE LANDS BEYOND</small></span>
+    </a>
+    <p>Неофициальный сайт Minecraft-сервера Shulker Slot.</p>
+    <div class="footer-links">
+      <a href="rules.html">Правила</a>
+      <a href="wiki.html">Вики</a>
+      <a href="https://discord.gg/kcyupGUV4" target="_blank" rel="noopener noreferrer">Заявка в Discord</a>
+      <a href="Shulker-Slot-updated.zip" download="Shulker-Slot-updated.zip" style="color:var(--lilac);font-weight:600">Скачать сайт (.ZIP)</a>
+    </div>
+    <span class="copyright">© 2026 SHULKER SLOT</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

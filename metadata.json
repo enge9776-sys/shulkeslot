@@ -1,0 +1,6 @@
+{
+  "name": "Shulker Slot",
+  "description": "Shulker Slot — Minecraft-сервер выживания. Исследуй древние земли, строй свою историю и присоединяйся к сообществу.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
